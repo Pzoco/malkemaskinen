@@ -77,4 +77,13 @@ client.on('messageCreate', message => {
   
 });
 
-client.login('');
+let config = {};
+try {
+  const rawData = fs.readFileSync('config.json');
+  config = JSON.parse(rawData);
+} catch (error) {
+  console.error('Error loading coinfig.json - have you renamed config_example.json?:', error);
+}
+
+
+client.login(config.token);
